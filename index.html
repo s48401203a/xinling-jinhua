@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>心灵进化之旅 · 小勇士成长档案</title>
+<style>
+/* ===== THEME VARIABLES ===== */
+[data-theme="delta"]   {--p1:#4a6741;--p2:#3d5a30;--p3:#6b8f5e;--a1:#c9a96e;--a2:#e8dcc8;--bg:#f2ede0;--ca:#fff;--ik:#2a2a2a;--st:#6b6b73;--ln:#ddd6c8;--da:#c4622d;--daBg:#fbeee5;--go:#4a6741;--goBg:#eaf0e6;--bl:#3b6ea5;--blBg:#e9f0f7;--ch:#d4953a;--chBg:#fef6e8;--gd:#c9a96e;--br:14px;--dr:'△▽△▽△';--ic:'△';--c1:#e8d5b0;--c2:#f2ede0;--cr:#f2ede0;--hBg:linear-gradient(135deg,#3d5a30,#5b7a4a);--hC:#fff}
+[data-theme="minecraft"]{--p1:#5D8A3C;--p2:#3E6B2A;--p3:#7CB342;--a1:#8D6E63;--a2:#D7CCC8;--bg:#C8B89A;--ca:#F5F0E0;--ik:#2C2C2C;--st:#6D5E4A;--ln:#A09080;--da:#B84C2E;--daBg:#F5E0D0;--go:#5D8A3C;--goBg:#E8F0D8;--bl:#3B6FA0;--blBg:#D8E8F0;--ch:#8D6E63;--chBg:#F0E8D8;--gd:#8D6E63;--br:2px;--dr:'■□■□■';--ic:'■';--c1:#A09080;--c2:#D7CCC8;--cr:#C8B89A;--hBg:linear-gradient(135deg,#3E6B2A,#5D8A3C);--hC:#fff}
+[data-theme="wukong"] {--p1:#2D1B2E;--p2:#1C0F1D;--p3:#4A2B4D;--a1:#D4A017;--a2:#F0D060;--bg:#0F0A12;--ca:#1A1220;--ik:#E8DCC8;--st:#A09098;--ln:#3A2A3C;--da:#C0392B;--daBg:#2D1A1A;--go:#D4A017;--goBg:#2D2518;--bl:#5B7FA5;--blBg:#1A2230;--ch:#D4A017;--chBg:#1E1620;--gd:#D4A017;--br:12px;--dr:'☯⚡☯⚡☯';--ic:'⚡';--c1:#3A2A3C;--c2:#2A1A2C;--cr:#0F0A12;--hBg:linear-gradient(135deg,#1C0F1D,#2D1B2E);--hC:#E8DCC8}
+[data-theme="wanglanmei"]{--p1:#6A4E7D;--p2:#4D3560;--p3:#9B7BB5;--a1:#D488A0;--a2:#F5D5DE;--bg:#F5EEF5;--ca:#FFF8FB;--ik:#3A2A3A;--st:#7A6A7A;--ln:#D8CCD8;--da:#B84C6E;--daBg:#F5E0E8;--go:#6A4E7D;--goBg:#F0E8F5;--bl:#6A7DB5;--blBg:#E8EDF5;--ch:#D488A0;--chBg:#FFF0F5;--gd:#D488A0;--br:18px;--dr:'✿❀✿❀✿';--ic:'✿';--c1:#D8CCD8;--c2:#F0E8F0;--cr:#F5EEF5;--hBg:linear-gradient(135deg,#4D3560,#6A4E7D);--hC:#fff}
+
+/* ===== BASE ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ik);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.7;font-size:16px;min-height:100vh;position:relative;overflow-x:hidden;
+  transition:background .4s,color .4s;
+}
+body::before{
+  content:var(--dr);position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;
+  font-size:64px;letter-spacing:12px;line-height:1.15;color:var(--p1);overflow:hidden;word-break:break-all;
+  transition:color .4s;
+}
+.wrap{max-width:940px;margin:0 auto;padding:20px 16px 70px;position:relative;z-index:1}
+
+/* mode toggle */
+.modeSw{display:flex;border-radius:var(--br);overflow:hidden;border:2px solid var(--p1);background:var(--ca);margin-bottom:20px;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.modeBtn{flex:1;padding:14px 12px;text-align:center;cursor:pointer;font-size:15px;font-weight:600;transition:all .3s;border:none;background:var(--ca);color:var(--st);letter-spacing:1px;position:relative}
+.modeBtn:hover{background:var(--c2)}
+.modeBtn.act{background:var(--p1);color:#fff}
+.modeBtn .ic{font-size:18px;display:block;margin-bottom:1px}
+
+/* heroes */
+.heroP,.heroC{
+  border-radius:18px;padding:30px 26px;margin-bottom:12px;position:relative;overflow:hidden;transition:all .4s;
+}
+.heroP{background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+.heroP h1{margin:0 0 8px;font-size:23px;line-height:1.4}
+.heroP p{margin:0;opacity:.95;font-size:14.5px}
+.heroC{background:var(--hBg);color:var(--hC);box-shadow:0 10px 30px rgba(0,0,0,.15)}
+.heroC::before{content:var(--dr);position:absolute;right:-8px;top:-4px;font-size:80px;opacity:.07;letter-spacing:5px;line-height:1;pointer-events:none}
+.heroC h1{margin:4px 0 8px;font-size:22px;line-height:1.35}
+.heroC p{margin:0;opacity:.92;font-size:14px}
+.heroC .bdg{display:inline-block;background:var(--a1);color:var(--p2);border-radius:999px;padding:2px 12px;font-size:12px;font-weight:700;margin-bottom:6px}
+.stars{color:var(--a1);font-size:12px;letter-spacing:2px;margin-top:5px;content:var(--dr)}
+
+/* common */
+.sec{background:var(--ca);border:1px solid var(--ln);border-radius:var(--br);padding:18px 20px;margin:12px 0;box-shadow:0 2px 10px rgba(0,0,0,.03);transition:all .4s}
+h2{font-size:17px;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+h2 .n{flex:none;width:26px;height:26px;border-radius:7px;background:var(--goBg);color:var(--go);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+h3{font-size:15px;margin:14px 0 6px;color:var(--p1)}
+p{margin:6px 0}
+ul{margin:6px 0;padding-left:20px}
+li{margin:4px 0}
+.mt{color:var(--st);font-size:13.5px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:620px){.grid{grid-template-columns:1fr}}
+.box{border-radius:11px;padding:14px 16px}
+.do{background:var(--goBg);border:1px solid var(--p3)}.do h4{color:var(--go)}
+.dont{background:var(--daBg);border:1px solid var(--da)}.dont h4{color:var(--da)}
+.box h4{margin:0 0 6px;font-size:14.5px}
+.box ul{padding-left:16px}.box li{font-size:14px}
+.dc{border:1px solid var(--ln);border-radius:11px;padding:14px 16px;margin:9px 0;background:var(--c2);position:relative}
+.dc::before{content:var(--ic);position:absolute;top:-8px;right:12px;font-size:18px;color:var(--a1);opacity:.5}
+.dc b{color:var(--p1)}
+.qt{background:var(--blBg);border-left:4px solid var(--bl);border-radius:8px;padding:10px 14px;margin:8px 0;font-size:14.5px}
+.step{display:flex;gap:12px;margin:10px 0}
+.step .dt{flex:none;width:24px;height:24px;border-radius:50%;background:var(--p1);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.step .bd{flex:1}.step .bd b{display:block;margin-bottom:1px}
+.rf{background:var(--daBg);border:1px solid var(--da);border-radius:11px;padding:14px 18px}
+.emer{background:var(--daBg);border:1.5px solid var(--da);border-radius:var(--br);padding:16px 20px;margin:14px 0}
+.emer h2{color:var(--da)}.emer h2 .n{background:var(--daBg);color:var(--da)}
+.ht{display:flex;flex-wrap:wrap;gap:10px;margin-top:5px}
+.ht .it{flex:1 1 200px;background:var(--ca);border:1px solid var(--ln);border-radius:11px;padding:12px 14px}
+.ht .num{font-size:20px;font-weight:800;color:var(--da)}
+.ht .lbl{font-size:13px;color:var(--st);margin-top:2px}
+.pill{display:inline-block;background:var(--goBg);color:var(--go);border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600;margin-left:5px}
+.cls{background:var(--c2);border:1px solid var(--c1);border-radius:var(--br);padding:20px 22px;text-align:center;margin-top:14px}
+.cls p{font-size:15.5px;color:var(--p1);margin:4px 0}
+.ft{margin-top:22px;font-size:12.5px;color:var(--st);text-align:center;line-height:1.6}
+.hi{display:none!important}
+.dd{text-align:center;margin:16px 0;color:var(--a1);font-size:16px;letter-spacing:7px;opacity:.5;font-weight:300}
+.dd::before{content:var(--ic)}.dd::after{content:var(--ic)}
+
+/* profile */
+.pf{background:var(--hBg);color:var(--hC);border-radius:var(--br);padding:20px 18px;margin:0 0 12px;position:relative;overflow:hidden;transition:all .4s}
+.pf .rw{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.pf .rk{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:28px;flex:none}
+.pf .in{flex:1}
+.pf .in .rt{font-size:17px;font-weight:700;letter-spacing:.5px}
+.pf .in .rs{font-size:12.5px;opacity:.7}
+.pf .in .cs{font-size:12px;opacity:.75;margin-top:1px}
+.pf .pr{display:flex;align-items:center;gap:10px;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.12)}
+.pf .pa{font-size:20px;font-weight:800;color:var(--gd)}
+.pf .pl{font-size:12px;opacity:.7}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+@media(max-width:420px){.sg{grid-template-columns:1fr}}
+.si{padding:8px 10px;border-radius:9px;background:rgba(0,0,0,.08)}
+.si .sh{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:3px}
+.si .sn{font-weight:600}.si .sv{color:var(--gd)}
+.sb{height:5px;border-radius:999px;background:rgba(255,255,255,.15);overflow:hidden}
+.sb .fl{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gd),var(--a2));transition:width .6s ease;width:0}
+.xs{margin-top:10px}
+.xs .xr{display:flex;justify-content:space-between;font-size:12px;opacity:.8;margin-bottom:2px}
+.xb{height:7px;border-radius:999px;background:rgba(255,255,255,.15);overflow:hidden}
+.xb .fl{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--p3),var(--a1));transition:width .6s ease;width:0}
+
+/* growth record */
+.gr{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px}
+@media(max-width:600px){.gr{grid-template-columns:1fr}}
+.gc{background:var(--goBg);border:1px solid var(--p3);border-radius:11px;padding:12px 14px;text-align:center}
+.gc .gv{font-size:22px;font-weight:800;color:var(--p1)}
+.gc .gl{font-size:12px;color:var(--st);margin-top:1px}
+.gc .ge{font-size:20px;display:block;margin-bottom:4px}
+.sbBar{display:flex;gap:4px;margin-top:8px;justify-content:center}
+.sbDot{width:16px;height:16px;border-radius:50%;background:var(--ln);transition:all .3s}
+.sbDot.on{background:var(--p3);box-shadow:0 0 6px rgba(0,0,0,.2)}
+.sbDot.today.on{background:var(--gd);box-shadow:0 0 8px rgba(0,0,0,.3)}
+
+/* missions */
+.mg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:720px){.mg{grid-template-columns:1fr}}
+.mc{background:var(--chBg);border:2px solid var(--c1);border-radius:var(--br);padding:16px 14px 14px;text-align:center;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.mc:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.mc.dn{border-color:var(--p3);background:var(--goBg);cursor:default;opacity:.8}
+.mc.dn:hover{transform:none;box-shadow:none}
+.mc .em{font-size:32px;display:block;margin-bottom:5px}
+.mc h4{font-size:14.5px;color:var(--p2);margin-bottom:3px}
+.mc p{font-size:13px;color:var(--st);margin:0;line-height:1.5}
+.mc .tg{display:inline-block;background:var(--p1);color:#fff;border-radius:999px;padding:2px 9px;font-size:10.5px;font-weight:700;margin-top:6px}
+.mc .dtg{display:none;color:var(--p2);font-size:11.5px;font-weight:700;margin-top:6px}
+.mc.dn .tg{display:none}.mc.dn .dtg{display:block}
+
+/* challenges */
+.cc{border:1px solid var(--ln);border-radius:11px;padding:13px 16px;margin:8px 0;background:var(--c2);display:flex;align-items:center;gap:12px}
+.cc .cn{flex:none;width:32px;height:32px;border-radius:50%;background:var(--p1);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.cc .cb{flex:1}
+.cc .cb b{display:block;color:var(--p2);margin-bottom:1px}
+.cc .cb p{font-size:13.5px;margin:0;color:var(--st)}
+
+/* mood */
+.mg2{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;justify-content:center}
+.mb{width:56px;height:56px;border-radius:50%;border:2px solid var(--ln);background:var(--ca);font-size:28px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.mb:hover{border-color:var(--a1);transform:scale(1.1)}
+.mb.sel{border-color:var(--p1);background:var(--goBg);transform:scale(1.12);box-shadow:0 0 0 3px rgba(0,0,0,.1)}
+
+/* shop */
+.sp{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+@media(max-width:460px){.sp{grid-template-columns:1fr}}
+.spi{border:1px solid var(--ln);border-radius:11px;padding:12px;text-align:center;background:var(--c2)}
+.spi .pr{font-size:17px;font-weight:800;color:var(--gd)}
+.spi .de{font-size:12.5px;color:var(--st);margin-top:2px}
+.spi .bb{margin-top:6px;padding:4px 14px;border:none;border-radius:999px;background:var(--p1);color:#fff;font-size:12px;font-weight:600;cursor:pointer}
+.spi .bb:hover{background:var(--p2)}
+.spi .bb:disabled{background:#ccc;cursor:not-allowed}
+
+/* achievements */
+.ag{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.ai{width:72px;text-align:center;opacity:.25;transition:all .3s}
+.ai.ul{opacity:1}
+.ai .ai2{font-size:28px;display:block}
+.ai .an{font-size:10.5px;color:var(--st);margin-top:2px;line-height:1.2}
+.ai.ul .an{color:var(--p1);font-weight:600}
+
+/* guide */
+.gc2{border:1px solid var(--ln);border-left:4px solid var(--gd);border-radius:11px;padding:14px 16px;margin:10px 0;background:var(--c2)}
+.gc2 .gt{font-size:14.5px;font-weight:700;color:var(--p2);margin-bottom:3px}
+.gc2 .gr2{font-size:12.5px;color:var(--st);margin-bottom:5px}
+.gc2 .gg{font-size:12.5px;color:var(--p1)}
+.gc2 .gtip{font-size:12.5px;color:var(--da);margin-top:5px;padding:5px 9px;background:var(--daBg);border-radius:7px}
+
+/* data */
+.dg{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:8px}
+.dgi{padding:8px 4px;border-radius:8px;text-align:center;background:var(--c2);font-size:11px;color:var(--st)}
+.dgi .ddn{font-weight:700;color:var(--p1);font-size:14px}
+.dgi.act{background:var(--goBg);border:1px solid var(--p3)}
+.dataGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media(max-width:580px){.dataGrid{grid-template-columns:1fr}}
+.di{background:var(--c2);border:1px solid var(--ln);border-radius:10px;padding:12px 14px}
+.di .dh{font-size:12.5px;color:var(--st);margin-bottom:3px}
+.di .dv{font-size:20px;font-weight:800;color:var(--p1)}
+.hBar{display:flex;align-items:center;gap:8px;margin:4px 0}
+.hBar .hl{width:60px;font-size:12.5px;color:var(--st);text-align:right;flex:none}
+.hBar .hb{flex:1;height:14px;border-radius:999px;background:var(--ln);overflow:hidden}
+.hBar .hb .fl{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--p3),var(--a1));transition:width .6s ease}
+.exp{margin-top:10px;padding:8px 18px;border:none;border-radius:9px;background:var(--p1);color:#fff;font-size:13px;font-weight:600;cursor:pointer;margin-right:8px}
+.exp:hover{background:var(--p2)}
+
+/* password modal */
+.overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.55);align-items:center;justify-content:center;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.overlay.show{display:flex}
+.pm{background:var(--ca);border-radius:18px;padding:28px 26px;width:340px;max-width:90vw;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center}
+.pm h3{font-size:17px;color:var(--p1);margin-bottom:4px}
+.pm p{font-size:13px;color:var(--st);margin-bottom:14px}
+.pm input{width:100%;padding:12px 14px;border:2px solid var(--ln);border-radius:10px;font-size:18px;text-align:center;letter-spacing:4px;outline:none;transition:border-color .3s}
+.pm input:focus{border-color:var(--p1)}
+.pm .err{color:var(--da);font-size:13px;margin-top:6px;display:none}
+.pm .pmb{display:flex;gap:10px;margin-top:14px}
+.pm .pmb button{flex:1;padding:10px;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer}
+.pm .pmb .pmy{background:var(--p1);color:#fff}
+.pm .pmb .pmy:hover{background:var(--p2)}
+.pm .pmb .pmn{background:var(--bg);color:var(--st)}
+.pm .pmb .pmn:hover{background:var(--c2)}
+
+/* ===== THEME PICKER ===== */
+.tp{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap;justify-content:center}
+.tb{
+  width:48px;height:48px;border-radius:12px;border:2.5px solid var(--ln);
+  background:var(--ca);cursor:pointer;transition:all .25s;
+  display:flex;align-items:center;justify-content:center;font-size:22px;position:relative;
+}
+.tb:hover{transform:scale(1.1);border-color:var(--a1)}
+.tb.act{border-color:var(--p1);background:var(--goBg);box-shadow:0 0 0 3px rgba(0,0,0,.08);transform:scale(1.1)}
+.tb .tt{
+  position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);
+  font-size:9px;color:var(--st);white-space:nowrap;opacity:0;transition:opacity .2s;
+}
+.tb:hover .tt{opacity:1}
+.tpWrap{text-align:center;margin-bottom:8px}
+.tpWrap .tpLabel{font-size:11.5px;color:var(--st)}
+</style>
+</head>
+<body>
+
+<div class="wrap" id="appWrap">
+
+  <!-- ========== MODE SWITCH ========== -->
+  <div class="modeSw">
+    <button class="modeBtn act" onclick="sw('parent')">
+      <span class="ic">△</span> 家长引导
+    </button>
+    <button class="modeBtn" onclick="sw('child')">
+      <span class="ic">▽</span> 孩子营地
+    </button>
+  </div>
+
+  <!-- ============================================================ -->
+  <!--                    家 长 环 节                                 -->
+  <!-- ============================================================ -->
+  <div id="pc" class="hi">
+
+    <header class="heroP">
+      <h1>当孩子说"我撑不下去了"<br>给家长的冷静应对指南</h1>
+      <p>这不是"小孩子瞎说"——它是需要你认真对待的信号。</p>
+    </header>
+
+    <div class="dc">
+      <b>一句话定调：先别慌，但绝不能忽视。</b> 任务不是审问真假，而是<b>让孩子感到安全、被听见</b>，并在需要时及时找专业帮助。
+    </div>
+
+    <div class="sec">
+      <h2><span class="n">1</span>孩子为什么会说这种话？</h2>
+      <p class="mt">第一时间往往无法分辨真假，所以下面每一种都要先接住，再判断。</p>
+      <div class="dc"><b>① 网络流行语 / 口头禅</b><br>从游戏、短视频、同学群里学来，"我受不了了"成了表达挫败的口头表达。</div>
+      <div class="dc"><b>② 情绪宣泄</b><br>考试失利、被批评、和同学闹矛盾……用极端的话表达"我现在很难受"。</div>
+      <div class="dc"><b>③ 想被看见 / 求关注</b><br>感到被忽视、孤独，用激烈的话引起注意。这本身也是需要回应的需求。</div>
+      <div class="dc"><b>④ 真实的心理困扰</b><br>可能是抑郁、焦虑、被霸凌、长期家庭压力的信号。</div>
+      <div class="dc"><b>⑤ 同伴模仿 / 网络氛围</b><br>群里有人这么说，跟着说；或正在经历网络欺凌、被孤立。</div>
+    </div>
+
+    <div class="sec">
+      <h2><span class="n">2</span>第一时间：该做 &amp; 别做</h2>
+      <div class="grid">
+        <div class="box do"><h4>✅ 该做</h4><ul><li>稳住自己，深呼吸再开口</li><li>当成真实信号认真对待</li><li>选轻松私密的时机靠近</li><li>多倾听少评价</li><li>表达关心："我有点担心你"</li><li>情绪强烈时做到有效陪伴</li></ul></div>
+        <div class="box dont"><h4>⛔ 别做</h4><ul><li>劈头责骂</li><li>当众质问兴师问罪</li><li>否定感受："你就是想太多"</li><li>讲大道理急着纠正</li><li>当成威胁："你这是吓唬我们"</li><li>过度惊慌传染恐惧</li></ul></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2><span class="n">3</span>怎么和孩子开口聊</h2>
+      <div class="step"><div class="dt">1</div><div class="bd"><b>选对场景</b>并肩而非对视——散步、睡前、坐车时更容易开口。</div></div>
+      <div class="step"><div class="dt">2</div><div class="bd"><b>温和开场</b><div class="qt">看到你发的话有点担心你，能和我说说最近有什么不开心吗？</div></div></div>
+      <div class="step"><div class="dt">3</div><div class="bd"><b>共情回应</b><div class="qt">听起来你当时一定很难受，谢谢你愿意告诉我。</div></div></div>
+      <div class="step"><div class="dt">4</div><div class="bd"><b>直接问</b><div class="qt">你有没有过"不想活了"的念头？</div><span class="mt">直接询问不会诱导风险，反而让孩子感到被理解。</span></div></div>
+      <div class="step"><div class="dt">5</div><div class="bd"><b>避免</b>"有什么大不了""别人都没事""不许再说"——它们会让孩子下次不敢说。</div></div>
+    </div>
+
+    <div class="sec rf">
+      <h2 style="color:#b23b3b"><span class="n" style="background:#f3d6d6;color:#b23b3b">4</span>需要高度警惕的信号</h2>
+      <p>出现以下情况请尽快带孩子就诊：</p>
+      <ul><li>反复提到撑不下去、"想消失"</li><li>说出具体方式或计划</li><li>把心爱东西送人、像告别</li><li>情绪持续低落超两周，食欲睡眠明显改变</li><li>不愿上学、回避社交</li><li>身上出现不明伤痕</li><li>长期低落后突然异常平静</li></ul>
+    </div>
+
+    <div class="emer">
+      <h2><span class="n">!</span>紧急情况</h2>
+      <p>如果孩子正在尝试自伤：不要独处、移除危险物品、保持陪伴、立即就医。</p>
+      <div class="ht"><div class="it"><div class="num">120</div><div class="lbl">急救</div></div><div class="it"><div class="num">最近医院急诊</div><div class="lbl">陪同前往</div></div></div>
+    </div>
+
+    <div class="sec">
+      <h2><span class="n">5</span>关于"手表社交圈"</h2>
+      <ul><li><b>关心而非监视</b>——坦诚告知原因而不是偷看翻旧账</li><li><b>留意同伴影响</b>——是否被孤立、网络欺凌</li><li><b>区分玩笑与求救</b>——都值得回应一次</li><li><b>适度管理设备</b>——用沟通而非没收</li></ul>
+    </div>
+
+    <div class="sec">
+      <h2><span class="n">6</span>日常预防</h2>
+      <ul><li>每天留十分钟属于你们的聊天时间</li><li>不给负面情绪贴标签，孩子才敢说真话</li><li>示范如何平静处理挫折</li><li>从他的兴趣切入：三角洲、积木、小区散步——这些共同时光最容易让他敞开心扉</li></ul>
+    </div>
+
+    <div class="sec">
+      <h2><span class="n">△</span>指挥官指南</h2>
+      <p class="mt">以下仅供家长阅读。让孩子以为他在玩，而你知道他在成长。</p>
+      <div class="gc2"><div class="gt">🔐 密文精度</div><div class="gr2">→ 写字工整度、握笔姿势</div><div class="gg">孩子看到："密文报送"技能等级</div><div class="gtip">💡 不说"字写端正"，说"这份密文清晰多了"</div></div>
+      <div class="gc2"><div class="gt">📡 情报分析</div><div class="gr2">→ 口算准确率、数学细心度</div><div class="gg">孩子看到："情报破译"技能等级</div><div class="gtip">💡 不说"这么简单都错"，说"情报准确率又提高了"</div></div>
+      <div class="gc2"><div class="gt">🎯 潜伏耐力</div><div class="gr2">→ 坐姿端正度</div><div class="gg">孩子看到：狙击手保持完美姿态</div><div class="gtip">💡 不实时纠正，事后说"刚才潜伏姿态保持得很好"</div></div>
+      <div class="gc2"><div class="gt">🤝 小队默契</div><div class="gr2">→ 亲子沟通意愿</div><div class="gg">孩子看到：小队协作等级</div><div class="gtip">💡 他主动分享时说"小队默契又提升了"</div></div>
+      <div class="gc2"><div class="gt">💰 军饷系统</div><div class="gr2">→ 零用钱管理</div><div class="gg">每周固定饷银+任务奖金</div><div class="gtip">💡 每周固定给，不跟表现挂钩。买亏了是教育机会</div></div>
+      <div class="dc" style="background:var(--c2)">
+        <b>⚡ 关于那件事的后续</b>
+        <ul style="margin-top:5px;font-size:13.5px">
+          <li>他和同学聊——是健康信号，他在消化。不要阻止。</li>
+          <li>营地点了负面心情，平静问"愿意聊聊吗？"——只陪伴，不分析。</li>
+          <li>他不提时不要翻旧账。用小队默契任务自然拉近距离。</li>
+          <li>他主动提，认真听，说"谢谢你愿意告诉我"——够了。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2><span class="n">📊</span>数据分析看板</h2>
+      <h3>📅 本周活跃度</h3>
+      <div class="dg" id="weekGrid"></div>
+      <h3>📈 能力趋势（近7天）</h3>
+      <div id="trendBars"></div>
+      <h3>📋 月度摘要</h3>
+      <div class="dataGrid">
+        <div class="di"><div class="dh">本月总经验</div><div class="dv" id="mXp">0</div></div>
+        <div class="di"><div class="dh">完成任务</div><div class="dv" id="mMissions">0</div></div>
+        <div class="di"><div class="dh">军衔</div><div class="dv" id="mRankUps">0</div></div>
+        <div class="di"><div class="dh">最高连续打卡</div><div class="dv" id="mStreak">0</div></div>
+      </div>
+      <h3>🔐 密文精度</h3>
+      <div><div class="hBar"><span class="hl">今日</span><div class="hb"><div class="fl" id="ctDay"></div></div></div>
+      <div class="hBar"><span class="hl">本周平均</span><div class="hb"><div class="fl" id="ctWeek"></div></div></div>
+      <div class="hBar"><span class="hl">本月平均</span><div class="hb"><div class="fl" id="ctMonth"></div></div></div></div>
+      <h3>📡 情报分析</h3>
+      <div><div class="hBar"><span class="hl">今日</span><div class="hb"><div class="fl" id="itDay"></div></div></div>
+      <div class="hBar"><span class="hl">本周平均</span><div class="hb"><div class="fl" id="itWeek"></div></div></div>
+      <div class="hBar"><span class="hl">本月平均</span><div class="hb"><div class="fl" id="itMonth"></div></div></div></div>
+      <h3>🎯 潜伏耐力</h3>
+      <div><div class="hBar"><span class="hl">今日</span><div class="hb"><div class="fl" id="stDay"></div></div></div>
+      <div class="hBar"><span class="hl">本周平均</span><div class="hb"><div class="fl" id="stWeek"></div></div></div>
+      <div class="hBar"><span class="hl">本月平均</span><div class="hb"><div class="fl" id="stMonth"></div></div></div></div>
+      <h3>🤝 小队默契</h3>
+      <div><div class="hBar"><span class="hl">今日</span><div class="hb"><div class="fl" id="sqDay"></div></div></div>
+      <div class="hBar"><span class="hl">本周平均</span><div class="hb"><div class="fl" id="sqWeek"></div></div></div>
+      <div class="hBar"><span class="hl">本月平均</span><div class="hb"><div class="fl" id="sqMonth"></div></div></div></div>
+    </div>
+
+    <div class="sec">
+      <h2><span class="n">💾</span>数据管理</h2>
+      <p class="mt">这些数据是孩子成长的重要资产，建议定期备份。</p>
+      <button class="exp" onclick="expData()">⬇ 导出备份</button>
+      <button class="exp" onclick="document.getElementById('impF').click()" style="background:var(--bl)">⬆ 导入恢复</button>
+      <input type="file" id="impF" accept=".json" style="display:none" onchange="impData(event)">
+      <button class="exp" onclick="chPwd()" style="background:var(--da)">🔑 修改密码</button>
+      <p class="mt" style="margin-top:8px">当前密码：<b id="pwdH">1234</b></p>
+    </div>
+
+    <div class="cls">
+      <p>🌱 <b>孩子愿意说出口，是因为还信任你，也是在向你求助。</b></p>
+      <p>你的接纳、冷静和陪伴，本身就是最好的保护。</p>
+    </div>
+    <div class="ft">本指南不能替代专业诊断与治疗。如情况持续请及时就医。</div>
+  </div><!-- /parent -->
+
+  <!-- ============================================================ -->
+  <!--                    孩 子 环 节                                 -->
+  <!-- ============================================================ -->
+  <div id="cc">
+
+    <header class="heroC">
+      <div class="bdg">🔥 心灵进化之旅</div>
+      <h1><span id="greeting">欢迎回来</span>，小勇士！</h1>
+      <p>你的档案、任务和成长记录都在这里。</p>
+      <div class="stars"></div>
+    </header>
+
+    <!-- ===== THEME PICKER ===== -->
+    <div class="tpWrap">
+      <div class="tpLabel">🎨 主题风格</div>
+      <div class="tp">
+        <button class="tb act" data-theme-name="delta" onclick="setTheme('delta')">🔺<span class="tt">三角洲</span></button>
+        <button class="tb" data-theme-name="minecraft" onclick="setTheme('minecraft')">🧱<span class="tt">我的世界</span></button>
+        <button class="tb" data-theme-name="wukong" onclick="setTheme('wukong')">🐵<span class="tt">黑神话悟空</span></button>
+        <button class="tb" data-theme-name="wanglanmei" onclick="setTheme('wanglanmei')">🌸<span class="tt">王兰梅</span></button>
+      </div>
+    </div>
+
+    <!-- ===== 小勇士档案 ===== -->
+    <div class="pf" id="pfCard">
+      <div class="rw">
+        <div class="rk" id="rkIcon">🪖</div>
+        <div class="in">
+          <div class="rt" id="rkTitle">新兵</div>
+          <div class="rs">下一阶：<span id="xpNeed">50</span> XP</div>
+          <div class="cs">代号：三角洲小勇士</div>
+        </div>
+      </div>
+      <div class="xs">
+        <div class="xr"><span>经验值</span><span id="xpD">0</span></div>
+        <div class="xb"><div class="fl" id="xpF"></div></div>
+      </div>
+      <div class="sg">
+        <div class="si"><div class="sh"><span class="sn">🔐 密文精度</span><span class="sv" id="cV">0</span></div><div class="sb"><div class="fl" id="cF"></div></div></div>
+        <div class="si"><div class="sh"><span class="sn">📡 情报分析</span><span class="sv" id="iV">0</span></div><div class="sb"><div class="fl" id="iF"></div></div></div>
+        <div class="si"><div class="sh"><span class="sn">🎯 潜伏耐力</span><span class="sv" id="sV">0</span></div><div class="sb"><div class="fl" id="sF"></div></div></div>
+        <div class="si"><div class="sh"><span class="sn">🤝 小队默契</span><span class="sv" id="qV">0</span></div><div class="sb"><div class="fl" id="qF"></div></div></div>
+      </div>
+      <div class="pr"><span class="pl">💰 本周军饷</span><span class="pa" id="payD">10</span><span class="pl">元</span></div>
+    </div>
+
+    <!-- ===== 成长记录 ===== -->
+    <div class="sec">
+      <h2><span class="n">📊</span>成长记录</h2>
+      <p class="mt">每天的数据都会被记录下来，看看你的进步！</p>
+      <div class="gr">
+        <div class="gc"><span class="ge">📅</span><div class="gv" id="tM">0</div><div class="gl">今日任务</div></div>
+        <div class="gc"><span class="ge">🔥</span><div class="gv" id="stk">0</div><div class="gl" id="stkLbl">连续打卡</div></div>
+        <div class="gc"><span class="ge">⭐</span><div class="gv" id="wXp">0</div><div class="gl">本周经验</div></div>
+      </div>
+      <div class="gc" style="margin-top:8px;background:var(--chBg);border-color:var(--c1)">
+        <div style="font-size:13px;color:var(--st)">近7天打卡</div>
+        <div class="sbBar" id="stkBar"></div>
+      </div>
+    </div>
+
+    <div class="dd"></div>
+
+    <!-- ===== 每日任务 ===== -->
+    <div class="sec">
+      <h2><span class="n">🎯</span>每日训练任务</h2>
+      <p class="mt">点击完成今天的任务，提升能力值！</p>
+      <div class="mg">
+        <div class="mc" onclick="doM(0,this)" id="m0">
+          <span class="em">✍️</span><h4>密文报送</h4><p>认真写好 3 行字</p>
+          <span class="tg">+🔐 密文精度</span><span class="dtg">✅ 已完成</span>
+        </div>
+        <div class="mc" onclick="doM(1,this)" id="m1">
+          <span class="em">🧮</span><h4>情报破译</h4><p>口算全对一次</p>
+          <span class="tg">+📡 情报分析</span><span class="dtg">✅ 已完成</span>
+        </div>
+        <div class="mc" onclick="doM(2,this)" id="m2">
+          <span class="em">🎯</span><h4>潜伏训练</h4><p>端正姿势写 15 分钟</p>
+          <span class="tg">+🎯 潜伏耐力</span><span class="dtg">✅ 已完成</span>
+        </div>
+      </div>
+      <p class="mt" style="text-align:center;margin-top:8px" id="mH">点击卡片开始训练！</p>
+    </div>
+
+    <!-- ===== 亲子挑战 ===== -->
+    <div class="sec">
+      <h2><span class="n">⚡</span>亲子挑战卡</h2>
+      <p class="mt">发给爸妈，看他们敢不敢接招！</p>
+      <div class="cc"><div class="cn">1</div><div class="cb"><b>🎮 教我打三角洲</b><p>"爸妈，陪我打一局！我教你操作！"</p></div></div>
+      <div class="cc"><div class="cn">2</div><div class="cb"><b>🏗️ 一起搭积木</b><p>"来比赛，看谁的堡垒更厉害！"</p></div></div>
+      <div class="cc"><div class="cn">3</div><div class="cb"><b>🗺️ 小区探索</b><p>"带你们去我的秘密据点！"</p></div></div>
+      <div class="cc"><div class="cn">4</div><div class="cb"><b>🎤 今日新闻</b><p>"我先说个糗事，换你们讲一个！"</p></div></div>
+    </div>
+
+    <!-- ===== 军饷 ===== -->
+    <div class="sec">
+      <h2><span class="n">💰</span>军饷 &amp; 装备库</h2>
+      <p class="mt">攒够军饷兑换装备！买定离手不后悔。</p>
+      <div class="sp">
+        <div class="spi"><div class="pr">¥5</div><div class="de">🎮 三角洲 +15分钟</div><button class="bb" onclick="buy(5,this)">兑换</button></div>
+        <div class="spi"><div class="pr">¥3</div><div class="de">🍦 冰淇淋券</div><button class="bb" onclick="buy(3,this)">兑换</button></div>
+        <div class="spi"><div class="pr">¥8</div><div class="de">🧱 积木补充包</div><button class="bb" onclick="buy(8,this)">兑换</button></div>
+        <div class="spi"><div class="pr">¥2</div><div class="de">🎁 小零食</div><button class="bb" onclick="buy(2,this)">兑换</button></div>
+      </div>
+    </div>
+
+    <!-- ===== 话题 ===== -->
+    <div class="sec">
+      <h2><span class="n">💡</span>跟爸妈聊这些</h2>
+      <div class="dc"><b>🎯 三角洲话题</b><br>"今天解锁了新武器！"<br>"研究出新战术，下次教你们！"</div>
+      <div class="dc"><b>🧱 积木话题</b><br>"搭了三层防御基地，来看！"<br>"想搭你小时候玩过的建筑！"</div>
+      <div class="dc"><b>🌳 小区话题</b><br>"发现了一个秘密出口！"<br>"楼下流浪猫生宝宝了！"</div>
+    </div>
+
+    <!-- ===== 成就 ===== -->
+    <div class="sec">
+      <h2><span class="n">🏅</span>成就墙</h2>
+      <p class="mt">达成条件自动解锁！</p>
+      <div class="ag" id="ag"></div>
+    </div>
+
+    <!-- ===== 心情 ===== -->
+    <div class="sec">
+      <h2><span class="n">🌈</span>心情信号站</h2>
+      <p class="mt">今天的心情是什么颜色？</p>
+      <div class="mg2">
+        <button class="mb" onclick="md(this)">😄</button>
+        <button class="mb" onclick="md(this)">🙂</button>
+        <button class="mb" onclick="md(this)">😐</button>
+        <button class="mb" onclick="md(this)">😔</button>
+        <button class="mb" onclick="md(this)">😢</button>
+        <button class="mb" onclick="md(this)">😤</button>
+      </div>
+      <p id="mMsg" class="mt" style="text-align:center;margin-top:5px">点一下～</p>
+    </div>
+
+    <div class="sec">
+      <h2><span class="n">🌟</span>小勇士守则</h2>
+      <ul>
+        <li><b>开心的事</b>——分享给爸妈，快乐翻倍！</li>
+        <li><b>难过的事</b>——说出来不丢人，爸妈是你后盾。</li>
+        <li><b>生气的事</b>——深呼吸再说，爸妈会认真听。</li>
+        <li><b>困惑的事</b>——说出来就解决了一半。</li>
+        <li><b>你的感受很重要，永远值得被听见。</b></li>
+      </ul>
+      <div style="text-align:center;margin-top:10px;color:var(--gd);font-size:12px;letter-spacing:3px"></div>
+    </div>
+  </div><!-- /child -->
+
+</div><!-- /wrap -->
+
+<!-- ===== PASSWORD MODAL ===== -->
+<div class="overlay" id="pwdO">
+  <div class="pm">
+    <h3>🔒 家长引导</h3>
+    <p>请输入密码</p>
+    <input type="password" id="pwdI" maxlength="10" placeholder="密码" autocomplete="off">
+    <div class="err" id="pwdE">密码错误</div>
+    <div class="pmb">
+      <button class="pmn" onclick="closePwd()">取消</button>
+      <button class="pmy" onclick="checkPwd()">确认</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const RANKS=[
+  {name:'新兵',icon:'🪖',need:0},{name:'侦察兵',icon:'🔭',need:50},
+  {name:'突击手',icon:'⚔️',need:120},{name:'特种兵',icon:'🎖️',need:220},
+  {name:'三角洲精英',icon:'🏆',need:360},{name:'总指挥',icon:'👑',need:520}
+];
+const ACH=[
+  {id:'a1',name:'首次报到',icon:'✅',ck:()=>true},
+  {id:'a2',name:'密文新秀',icon:'✍️',ck:s=>s.cipher>=10},
+  {id:'a3',name:'情报专家',icon:'📡',ck:s=>s.intel>=10},
+  {id:'a4',name:'潜伏高手',icon:'🎯',ck:s=>s.stealth>=10},
+  {id:'a5',name:'默契搭档',icon:'🤝',ck:s=>s.squad>=10},
+  {id:'a6',name:'全能战士',icon:'💪',ck:s=>s.cipher>=5&&s.intel>=5&&s.stealth>=5&&s.squad>=5},
+  {id:'a8',name:'晋升',icon:'⭐',ck:s=>s.rank>=1}
+];
+const DAYS=['日','一','二','三','四','五','六'];
+
+function defD(){
+  return{xp:0,cipher:0,intel:0,stealth:0,squad:0,rank:0,allowance:10,
+    missions:[],mood:null,purchases:[],history:{},password:'1234',highestStreak:0,theme:'delta'};
+}
+function ld(){
+  try{const r=localStorage.getItem('dp');if(r){const d=JSON.parse(r);return{...defD(),...d}}}
+  catch(e){}return defD();
+}
+function sv(d){d._t=Date.now();localStorage.setItem('dp',JSON.stringify(d))}
+let D=ld();
+let pwdU=false;
+
+function cRank(xp){let r=0;for(let i=RANKS.length-1;i>=0;i--){if(xp>=RANKS[i].need){r=i;break}}return r}
+function today(){return new Date().toISOString().slice(0,10)}
+function dAgo(n){const d=new Date();d.setDate(d.getDate()-n);return d.toISOString().slice(0,10)}
+function gH(dt){
+  if(!D.history)D.history={};
+  if(!D.history[dt])D.history[dt]={xp:0,cipher:0,intel:0,stealth:0,squad:0,missions:0,mood:''};
+  return D.history[dt];
+}
+function eTH(){
+  const t=today();
+  if(!D.history)D.history={};
+  if(!D.history[t])D.history[t]={xp:0,cipher:0,intel:0,stealth:0,squad:0,missions:0,mood:D.mood||''};
+}
+function cStk(){
+  let s=0;
+  for(let i=0;i<365;i++){
+    const d=dAgo(i);
+    if(D.history&&D.history[d]&&D.history[d].missions>0){s++}else{if(i>0)break}
+  }
+  if(s>D.highestStreak)D.highestStreak=s;
+  return s;
+}
+function gWR(){
+  const n=new Date(),d=n.getDay(),df=n.getDate()-(d===0?6:d-1);
+  const m=new Date(n);m.setDate(df);const w=[];
+  for(let i=0;i<7;i++){const t=new Date(m);t.setDate(t.getDate()+i);w.push(t.toISOString().slice(0,10))}
+  return w;
+}
+function gMD(){
+  const d=[];const n=new Date();const y=n.getFullYear(),m=n.getMonth();
+  const ds=new Date(y,m+1,0).getDate();
+  for(let d2=1;d2<=ds;d2++){d.push(`${y}-${String(m+1).padStart(2,'0')}-${String(d2).padStart(2,'0')}`)}
+  return d;
+}
+
+// ====== THEME ======
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  D.theme=t;
+  document.querySelectorAll('.tb').forEach(b=>b.classList.toggle('act',b.dataset.themeName===t));
+  sv(D);
+}
+
+// ====== REFRESH ======
+function ref(){
+  const r=cRank(D.xp);D.rank=r;
+  const rk=RANKS[r];
+  const e1=document.getElementById('rkIcon');if(e1)e1.textContent=rk.icon;
+  const e2=document.getElementById('rkTitle');if(e2)e2.textContent=rk.name;
+  const nx=RANKS[r+1];
+  const e3=document.getElementById('xpNeed');if(e3)e3.textContent=nx?Math.max(1,nx.need-D.xp):'MAX';
+  const e4=document.getElementById('xpD');if(e4)e4.textContent=D.xp;
+  const xB=r>0?RANKS[r].need:0;
+  const xP=nx?Math.min(100,(D.xp-xB)/(nx.need-xB)*100):100;
+  const e5=document.getElementById('xpF');if(e5)e5.style.width=Math.min(100,Math.max(0,xP))+'%';
+
+  [
+    {id:'c',v:D.cipher},{id:'i',v:D.intel},{id:'s',v:D.stealth},{id:'q',v:D.squad}
+  ].forEach(s=>{
+    const v=document.getElementById(s.id+'V');if(v)v.textContent=s.v;
+    const f=document.getElementById(s.id+'F');if(f)f.style.width=Math.min(100,s.v)+'%';
+  });
+
+  const p=document.getElementById('payD');if(p)p.textContent=D.allowance;
+
+  const t=today();
+  if(!D.missions)D.missions=[];
+  for(let i=0;i<3;i++){const c=document.getElementById('m'+i);if(c){c.classList.toggle('dn',D.missions.includes(t+'-'+i))}}
+  const tC=D.missions.filter(m=>m.startsWith(t)).length;
+  const mh=document.getElementById('mH');
+  if(mh){
+    if(tC>=3)mh.textContent='✅ 全部完成，你太强了！';
+    else if(tC>0)mh.textContent=`✅ ${tC}/3，继续加油！`;
+    else mh.textContent='点击卡片开始训练！';
+  }
+
+  const h=new Date().getHours();
+  const g=document.getElementById('greeting');
+  if(g){
+    if(h<6)g.textContent='这么晚还没睡';else if(h<9)g.textContent='早上好';else if(h<12)g.textContent='上午好';
+    else if(h<14)g.textContent='中午好';else if(h<18)g.textContent='下午好';else g.textContent='晚上好';
+  }
+
+  document.getElementById('tM').textContent=tC;
+  const sk=cStk();document.getElementById('stk').textContent=sk;
+  const wd=gWR();let wX=0;
+  wd.forEach(d=>{if(D.history&&D.history[d])wX+=D.history[d].xp||0});
+  document.getElementById('wXp').textContent=wX;
+
+  const sb=document.getElementById('stkBar');
+  if(sb){
+    sb.innerHTML='';
+    for(let i=6;i>=0;i--){
+      const d=dAgo(i),a=D.history&&D.history[d]&&D.history[d].missions>0;
+      const div=document.createElement('div');
+      div.className='sbDot'+(a?' on':'')+(i===0&&a?' today':'');
+      div.title=DAYS[(new Date().getDay()-i+7)%7];sb.appendChild(div);
+    }
+  }
+  rACH();sv(D);
+}
+
+function rACH(){
+  const g=document.getElementById('ag');if(!g)return;
+  ACH.forEach(a=>{a.ul=a.ck(D)});
+  g.innerHTML=ACH.map(a=>`<div class="ai ${a.ul?'ul':''}"><span class="ai2">${a.ul?a.icon:'🔒'}</span><span class="an">${a.name}</span></div>`).join('');
+}
+
+function doM(idx,el){
+  const t=today();
+  if(!D.missions)D.missions=[];
+  if(D.missions.includes(t+'-'+idx))return;
+  D.missions.push(t+'-'+idx);
+  const bs=[{s:'cipher',x:5},{s:'intel',x:5},{s:'stealth',x:5}];
+  const b=bs[idx];D[b.s]=Math.min(100,(D[b.s]||0)+3);D.xp=(D.xp||0)+b.x;
+  eTH();const h=D.history[t];
+  h.xp=(h.xp||0)+b.x;h.cipher=Math.min(100,(h.cipher||0)+(idx===0?3:0));
+  h.intel=Math.min(100,(h.intel||0)+(idx===1?3:0));
+  h.stealth=Math.min(100,(h.stealth||0)+(idx===2?3:0));
+  h.missions=(h.missions||0)+1;if(D.mood)h.mood=D.mood;
+  if(D.missions.filter(m=>m.startsWith(t)).length===3){D.xp+=5;D.allowance=(D.allowance||10)+2;eTH();D.history[t].xp=(D.history[t].xp||0)+5}
+  ref();
+}
+
+function buy(price,btn){
+  if(D.allowance<price)return;
+  D.allowance-=price;
+  if(!D.purchases)D.purchases=[];D.purchases.push({item:price,date:Date.now()});
+  ref();btn.textContent='✓';btn.disabled=true;
+  setTimeout(()=>{btn.textContent='兑换';btn.disabled=false},2000);
+}
+
+function md(el){
+  document.querySelectorAll('.mb').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');D.mood=el.textContent;eTH();D.history[today()].mood=D.mood;
+  const ms={'😄':'今天超开心！😄','🙂':'还不错～🙂','😐':'一般般😐','😔':'有点低落😔','😢':'很难受😢','😤':'有点生气😤'};
+  document.getElementById('mMsg').textContent=ms[el.textContent]||'❤️';sv(D);
+}
+
+function rPD(){
+  const t=today(),wd=gWR(),md=gMD();
+  const wg=document.getElementById('weekGrid');
+  if(wg){
+    wg.innerHTML=wd.map((d,i)=>{
+      const cnt=D.history&&D.history[d]?D.history[d].missions||0:0;
+      return `<div class="dgi ${cnt>0?'act':''}"><div class="ddn">${DAYS[(new Date().getDay()-6+i+7)%7]}</div>${cnt}任务</div>`;
+    }).join('');
+  }
+  ['ct','it','st','sq'].forEach((si,idx)=>{
+    const keys=['cipher','intel','stealth','squad'];
+    const key=keys[idx];
+    const tv=Math.min(100,D[key]||0);
+    const tE=document.getElementById(si+'Day');if(tE)tE.style.width=tv+'%';
+    let wS=0,wC=0;wd.forEach(d=>{if(D.history&&D.history[d]&&D.history[d][key]!==undefined){wS+=D.history[d][key];wC++}});
+    const wv=wC?Math.min(100,wS/wC):0;
+    const wE=document.getElementById(si+'Week');if(wE)wE.style.width=wv+'%';
+    let mS=0,mC=0;md.forEach(d=>{if(D.history&&D.history[d]&&D.history[d][key]!==undefined){mS+=D.history[d][key];mC++}});
+    const mv=mC?Math.min(100,mS/mC):0;
+    const mE=document.getElementById(si+'Month');if(mE)mE.style.width=mv+'%';
+  });
+  let mX=0,mM=0;md.forEach(d=>{if(D.history&&D.history[d]){mX+=D.history[d].xp||0;mM+=D.history[d].missions||0}});
+  document.getElementById('mXp').textContent=mX;
+  document.getElementById('mMissions').textContent=mM;
+  document.getElementById('mRankUps').textContent=D.rank;
+  document.getElementById('mStreak').textContent=D.highestStreak;
+}
+
+// ====== PASSWORD ======
+function sw(mode){
+  if(mode==='parent'){
+    if(pwdU){
+      document.getElementById('pc').classList.remove('hi');
+      document.getElementById('cc').classList.add('hi');
+      document.querySelectorAll('.modeBtn').forEach((b,i)=>b.classList.toggle('act',i===0));
+      rPD();
+    }else{
+      document.getElementById('pwdO').classList.add('show');
+      document.getElementById('pwdI').value='';document.getElementById('pwdE').style.display='none';
+      setTimeout(()=>document.getElementById('pwdI').focus(),100);
+    }
+  }else{
+    document.getElementById('pc').classList.add('hi');
+    document.getElementById('cc').classList.remove('hi');
+    document.querySelectorAll('.modeBtn').forEach((b,i)=>b.classList.toggle('act',i===1));
+    ref();
+  }
+}
+function checkPwd(){
+  if(document.getElementById('pwdI').value===(D.password||'1234')){
+    pwdU=true;closePwd();sw('parent');
+  }else{
+    document.getElementById('pwdE').style.display='block';
+    document.getElementById('pwdI').value='';document.getElementById('pwdI').focus();
+  }
+}
+function closePwd(){document.getElementById('pwdO').classList.remove('show')}
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('pwdI').addEventListener('keydown',e=>{if(e.key==='Enter')checkPwd()});
+});
+
+// ====== DATA ======
+function expData(){
+  sv(D);
+  const b=new Blob([JSON.stringify({exportedAt:new Date().toISOString(),data:D},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);
+  a.download=`三角洲营地_${today()}.json`;a.click();URL.revokeObjectURL(a.href);
+}
+function impData(evt){
+  const f=evt.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    try{
+      const p=JSON.parse(e.target.result);
+      if(p.data){D={...defD(),...p.data};sv(D);ref();alert('✅ 导入成功！');}
+      else alert('❌ 文件格式不正确');
+    }catch(err){alert('❌ 导入失败')}
+  };
+  r.readAsText(f);evt.target.value='';
+}
+function chPwd(){
+  const c=prompt('当前密码：');if(!c)return;
+  if(c!==(D.password||'1234')){alert('密码错误');return}
+  const n=prompt('新密码(4-10位)：');if(!n||n.length<4||n.length>10){alert('需4-10位');return}
+  const n2=prompt('再次输入：');if(n!==n2){alert('不一致');return}
+  D.password=n;sv(D);document.getElementById('pwdH').textContent=n;alert('✅ 已修改');
+}
+
+// ====== INIT ======
+document.addEventListener('DOMContentLoaded',()=>{
+  // apply saved theme
+  if(D.theme)setTheme(D.theme);
+  const pf=document.getElementById('pfCard');let taps=0;
+  if(pf){
+    pf.addEventListener('click',()=>{
+      taps++;if(taps>=5){if(confirm('重置所有数据？')){D=defD();sv(D);ref();setTheme(D.theme)}taps=0}
+      setTimeout(()=>taps=0,3000);
+    });
+  }
+  ref();document.getElementById('pwdH').textContent=D.password||'1234';
+});
+window.addEventListener('beforeunload',()=>sv(D));
+</script>
+</body>
+</html>
